@@ -1,0 +1,13 @@
+<header>
+  <div class="m-header" [style.display]="this.headerStyle">
+    <a class="mobile-menu" id="mobile-collapse1" href="javascript:" (click)="this.onNavCollapsedMob.emit();"><span></span></a>
+    <a [routerLink]="['/']" class="b-brand">
+      <img src="assets/images/logo-small.png" alt="">
+      <span class="b-title">Solarius</span>
+    </a>
+  </div>
+  <a class="mobile-menu" [ngClass]="{'on' : this.menuClass}" id="mobile-header" href="javascript:" (click)="toggleMobOption()"><i class="feather icon-more-horizontal"></i></a>
+  <div class="collapse navbar-collapse" [style.display]="this.collapseStyle">
+    <app-nav-right class="ml-auto"></app-nav-right>
+  </div>
+</header>

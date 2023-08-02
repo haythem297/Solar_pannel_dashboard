@@ -1,0 +1,107 @@
+<div class="row">
+  <div class="col-md-6 col-xl-6">
+    <div class="card theme-bg bitcoin-wallet">
+      <div class="card-block">
+        <h5 class="text-white mb-2">Users</h5>
+        <h2 class="text-white mb-2 f-w-300">{{totalUsers}}</h2>
+        <i class="fa fa-users f-70 text-white"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-xl-6">
+    <div class="card theme-bg2 bitcoin-wallet">
+      <div class="card-block">
+        <h5 class="text-white mb-2">Password reset requests</h5>
+        <h2 class="text-white mb-2 f-w-300">{{totalPasswordsReset}}</h2>
+        <i class="fas fa-lock-alt f-70 text-white"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-xl-3">
+    <div class="card theme-gauge gauge-card text-center margin-12">
+      <div class="card-block">
+        <ngx-gauge [type]="gaugeType" [size]="gaugeSize" [thick]="gaugeThick" [cap]="gaugeCap" [max]="tempMax" [value]="tempValue" [label]="tempLabel" [append]="tempAppendText" [thresholds]="tempThresholdConfig"[foregroundColor]="gaugeForgroundColor"></ngx-gauge>
+        <i class="fas fa-temperature-frigid f-70 text-white"></i>
+        <span class="gauge">Environment</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xl-3 margin-4">
+    <div class="card theme-gauge gauge-card text-center">
+      <div class="card-block">
+        <ngx-gauge [type]="gaugeType" [size]="gaugeSize" [thick]="gaugeThick" [cap]="gaugeCap" [max]="pressureMax" [value]="pressureValue" [label]="pressureLabel" [append]="pressureAppendText" [thresholds]="pressureThresholdConfig" [foregroundColor]="gaugeForgroundColor"></ngx-gauge>
+        <i class="fas fa-compress-arrows-alt f-70 text-white"></i>
+        <span class="gauge">Environment</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xl-3">
+    <div class="card theme-gauge gauge-card text-center margin-4">
+      <div class="card-block">
+        <ngx-gauge [type]="gaugeType" [size]="gaugeSize" [thick]="gaugeThick" [cap]="gaugeCap" [max]="humidityMax" [value]="humidityValue" [label]="humidityLabel" [append]="humidityAppendText" [thresholds]="humidityThresholdConfig" [foregroundColor]="gaugeForgroundColor"></ngx-gauge>
+        <i class="fas fa-humidity f-70 text-white left-45"></i>
+        <span class="gauge">Environment</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xl-3">
+    <div class="card theme-gauge gauge-card text-center margin-7">
+      <div class="card-block">
+        <ngx-gauge [type]="gaugeType" [size]="gaugeSize" [thick]="gaugeThick" [cap]="gaugeCap" [max]="lumMax" [value]="lumValue" [label]="lumLabel" [append]="lumAppendText" [thresholds]="lumThresholdConfig" [foregroundColor]="gaugeForgroundColor"></ngx-gauge>
+        <i class="fas fa-cloud-sun f-70 text-white"></i>
+        <span class="gauge">Environment</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xl-3">
+    <div class="card theme-gauge gauge-card text-center">
+      <div class="card-block">
+        <ngx-gauge [type]="gaugeType" [size]="gaugeSize" [thick]="gaugeThick" [cap]="gaugeCap" [max]="ampsMax" [value]="ampsValue" [label]="ampsLabel" [append]="ampsAppendText" [thresholds]="ampsThresholdConfig" [foregroundColor]="gaugeForgroundColor"></ngx-gauge>
+        <i class="fas fa-battery-bolt f-70 text-white"></i>
+        <span class="gauge">System</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xl-3">
+    <div class="card theme-gauge gauge-card text-center">
+      <div class="card-block">
+        <ngx-gauge [type]="gaugeType" [size]="gaugeSize" [thick]="gaugeThick" [cap]="gaugeCap" [max]="voltageMax" [value]="voltageValue" [label]="voltageLabel" [append]="voltageAppendText" [thresholds]="voltageThresholdConfig" [foregroundColor]="gaugeForgroundColor"></ngx-gauge>
+        <i class="fas fa-bolt f-70 text-white left-45"></i>
+        <span class="gauge">System</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xl-3">
+    <div class="card theme-gauge gauge-card text-center">
+      <div class="card-block">
+        <ngx-gauge [type]="gaugeType" [size]="gaugeSize" [thick]="gaugeThick" [cap]="gaugeCap" [max]="energyMax" [value]="energyValue" [label]="energyLabel" [append]="energyAppendText" [thresholds]="energyThresholdConfig" [foregroundColor]="gaugeForgroundColor"></ngx-gauge>
+        <i class="fas fa-house-day f-70 text-white"></i>
+        <span class="gauge">System</span>
+        {{systemStatus}}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xl-3">
+    <div class="card theme-gauge gauge-card text-center system">
+      <div class="card-block">
+        <i *ngIf="!systemStatus" class="fas fa-lightbulb off f-70"></i>
+        <i *ngIf="systemStatus" class="fas fa-lightbulb-on on f-70"></i>
+        <div class="reading-label">Status</div>
+        <span class="gauge">System</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <app-card cardTitle="Active System Status" [options]="false">
+      <div class="chart-wrapper">
+        <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+          [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+    </app-card>
+  </div>
+</div>

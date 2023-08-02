@@ -1,0 +1,31 @@
+<div>
+  <div class="modal-header">
+      <h5 class="modal-title mt-0">Send reset password request</h5>
+      <button type="button" class="btn-close"  aria-label="Close" (click)="closeModal()">
+      </button>
+    </div>
+  <div class="modal-body">
+    <form novalidate [formGroup]="FormData">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="username" [ngClass]="{'is-invalid':f.username.touched && f.username.errors}">Username *</label>
+            <input type="text" class="form-control" id="username" formControlName="username" placeholder="Enter Username" [ngClass]="{'is-invalid':f.username.touched && f.username.errors}">
+          </div>
+          <div *ngIf="f.username.touched && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">* Required field</div>
+            <div *ngIf="f.username.errors.minlength">* Field must be atleast 3 characters</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div *ngIf="ShowErrorMSG" class="alert alert-danger" [innerHtml]="ErrorMSG"></div>
+        </div>
+      </div>
+    </form>        
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-square btn-info" (click)="SubmitForm()" [ngClass]="{'disabled':FormData.status=='INVALID'}">Send</button>
+  </div>
+</div>

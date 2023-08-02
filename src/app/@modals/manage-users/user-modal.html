@@ -1,0 +1,101 @@
+<div>
+    <div class="modal-header">
+        <h5 class="modal-title mt-0">{{modalTitle}}</h5>
+        <button type="button" class="btn-close"  aria-label="Close" (click)="closeModal()">
+        </button>
+      </div>
+    <div class="modal-body">
+      <form novalidate [formGroup]="FormData">
+        <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="firstname" [ngClass]="{ 'is-invalid': f.firstname.touched && f.firstname.errors }">First Name *</label>
+            <input type="text" class="form-control" id="firstname" formControlName="firstname"  placeholder="Enter First Name" [ngClass]="{ 'is-invalid': f.firstname.touched && f.firstname.errors }">
+          </div>
+          <div *ngIf="f.firstname.touched && f.firstname.errors " class="invalid-feedback">
+            <div *ngIf=" f.firstname.errors.required "> * Required field</div>
+            <div *ngIf=" f.firstname.errors.minlength "> * Field must be at least 3 characters</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="lastname" [ngClass]="{'is-invalid':f.lastname.touched && f.lastname.errors }">Last Name *</label>
+            <input type="text" class="form-control" id="lastname" formControlName="lastname" placeholder="Enter Last Name" [ngClass]="{'is-invalid':f.lastname.touched && f.lastname.errors }">
+          </div>
+          <div *ngIf="f.lastname.touched && f.lastname.errors" class="invalid-feedback">
+            <div *ngIf="f.lastname.errors.required">* Required field</div>
+            <div *ngIf="f.lastname.errors.minlength">* Field must be atleast 3 characters</div>
+          </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="email" [ngClass]="{'is-invalid':f.email.touched && f.email.errors}">Email *</label>
+              <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter email" [ngClass]="{'is-invalid':f.email.touched && f.email.errors}">
+            </div>
+            <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required"> * Required field</div>
+              <div *ngIf="f.email.errors.pattern">* Invalid E-mail</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="phone" [ngClass]="{'is-invalid':f.phone.touched && f.phone.errors}">Phone *</label>
+              <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Enter Phone" [ngClass]="{'is-invalid':f.phone.touched && f.phone.errors}">
+            </div>
+            <div *ngIf="f.phone.touched && f.phone.errors" class="invalid-feedback">
+              <div *ngIf="f.phone.errors.required">* Required field</div>
+              <div *ngIf="f.phone.errors.minlength">* Field must be 8 numbers</div>
+              <div *ngIf="f.phone.errors.maxlength">* Field must be 8 numbers</div>
+              <div *ngIf="f.phone.errors.pattern">* Field must contain only numbers</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="username" [ngClass]="{'is-invalid':f.username.touched && f.username.errors}">Username *</label>
+              <input type="text" class="form-control" id="username" formControlName="username" placeholder="Enter Username" [ngClass]="{'is-invalid':f.username.touched && f.username.errors}">
+            </div>
+            <div *ngIf="f.username.touched && f.username.errors" class="invalid-feedback">
+              <div *ngIf="f.username.errors.required">* Required field</div>
+              <div *ngIf="f.username.errors.minlength">* Field must be atleast 3 characters</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label *ngIf="editMode" for="password" [ngClass]="{'is-invalid':f.password.touched && f.password.errors}">New Password</label>
+              <label *ngIf="!editMode" for="password" [ngClass]="{'is-invalid':f.password.touched && f.password.errors}">Password *</label>
+              <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password" [ngClass]="{'is-invalid':f.password.touched && f.password.errors}">
+            </div>
+            <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">* Required field</div>
+              <div *ngIf="f.password.errors.minlength">* Field must be atleast 5 characters</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label *ngIf="editMode" for="confirm_password" [ngClass]="{'is-invalid':f.confirm_password.touched &&f.confirm_password.errors}">Confirm New Password</label>
+              <label *ngIf="!editMode" for="confirm_password" [ngClass]="{'is-invalid':f.confirm_password.touched &&f.confirm_password.errors}">Confirm Password *</label>
+              <input type="password" class="form-control" id="confirm_password" formControlName="confirm_password" placeholder="Confirm Password" [ngClass]="{'is-invalid':f.confirm_password.touched &&f.confirm_password.errors}">
+            </div>
+            <div *ngIf="f.confirm_password.touched&& f.confirm_password.errors"class="invalid-feedback">
+              <div *ngIf="f.confirm_password.errors.required">* Required field</div>
+              <div *ngIf="f.confirm_password.errors.confirmedValidator">* Passwords miss-match</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div *ngIf="ShowErrorMSG" class="alert alert-danger" [innerHtml]="ErrorMSG"></div>
+          </div>
+        </div>
+      </form>        
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-square btn-info" (click)="SaveUser()" [ngClass]="{'disabled':FormData.status=='INVALID'}">{{(editMode)?'Update':'Save'}}</button>
+    </div>
+</div>

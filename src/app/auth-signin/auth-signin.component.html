@@ -1,0 +1,39 @@
+<div class="auth-wrapper">
+  <div class="auth-content">
+    <div class="auth-bg">
+      <span class="r"></span>
+      <span class="r s"></span>
+      <span class="r s"></span>
+      <span class="r"></span>
+    </div>
+    <div class="card">
+      <div class="card-body text-center">
+        <div class="mb-4">
+          <img src="assets/images/logo.png" alt="">
+        </div>
+        <h3 class="mb-4">Authentification</h3>
+        <form [formGroup]="FormData" (ngSubmit)="SubmitLogin(FormData.value)">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Username" formControlName="username"
+              [ngClass]="{ 'is-invalid': Submitted && f.username.errors }" autocomplete="cc-username"/>
+          </div>
+          <div *ngIf="Submitted && f.username.errors " class="invalid-feedback">
+            <div *ngIf=" f.username.errors.required "> * Required field</div>
+            <div *ngIf=" f.username.errors.minlength "> * Field must be at least 3 characters</div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="Password" formControlName="password"
+              [ngClass]="{ 'is-invalid': Submitted && f.password.errors }" autocomplete="cc-username"/>
+          </div>
+          <div *ngIf="Submitted && f.password.errors " class="invalid-feedback">
+            <div *ngIf=" f.password.errors.required "> * Required field</div>
+            <div *ngIf=" f.password.errors.minlength "> * Field must be at least 5 characters</div>
+          </div>
+          <div *ngIf="ShowErrorMSG" [@slideInOut]="animationState" class="alert alert-danger">{{ErrorMSG}}</div>
+          <button class="btn btn-primary btn-square mb-4">Login</button>
+          <p class="mb-2 text-muted">Forgot password? <a href="javascript:" (click)="openModal()">Reset</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

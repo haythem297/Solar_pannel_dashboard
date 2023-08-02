@@ -1,0 +1,121 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="MQTT Broker Server Configurations">
+      <form novalidate [formGroup]="FormConfigsMQTT">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="host" [ngClass]="{ 'is-invalid': f.host.touched && f.host.errors }">Host Name *</label>
+              <input type="text" class="form-control" id="host" formControlName="host" placeholder="Enter Host Name" [ngClass]="{ 'is-invalid': f.host.touched && f.host.errors }">
+            </div>
+            <div *ngIf="f.host.touched && f.host.errors " class="invalid-feedback">
+              <div *ngIf=" f.host.errors.required "> * Required field</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="port" [ngClass]="{ 'is-invalid': f.port.touched && f.port.errors }">Port Number *</label>
+              <input type="text" class="form-control" id="port" formControlName="port" placeholder="Enter Port Number" [ngClass]="{ 'is-invalid': f.port.touched && f.port.errors }">
+            </div>
+            <div *ngIf="f.port.touched && f.port.errors " class="invalid-feedback">
+              <div *ngIf="f.port.errors.required "> * Required field</div>
+              <div *ngIf="f.port.errors.minlength "> * Field must be at least 3 characters</div>
+              <div *ngIf="f.port.errors.maxlength "> * Field must contain at maximum 4 characters</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="protocol">Protocol</label>
+              <input type="text" class="form-control" id="protocol" formControlName="protocol" [attr.disabled]="true">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="path">Path</label>
+              <input type="text" class="form-control" id="path" formControlName="path" [attr.disabled]="true">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="temperature_sensor" [ngClass]="{'is-invalid':f.temperature_sensor.touched && f.temperature_sensor.errors}">Temperature Sensor Fixed Name</label>
+              <input type="text" class="form-control" id="temperature_sensor" formControlName="temperature_sensor" [ngClass]="{ 'is-invalid': f.temperature_sensor.touched && f.temperature_sensor.errors }">
+            </div>
+            <div *ngIf="f.temperature_sensor.touched && f.temperature_sensor.errors " class="invalid-feedback">
+              <div *ngIf="f.temperature_sensor.errors.required "> * Required field</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="pressure_sensor" [ngClass]="{'is-invalid':f.pressure_sensor.touched && f.pressure_sensor.errors}">Pressure Sensor Fixed Name</label>
+              <input type="text" class="form-control" id="pressure_sensor" formControlName="pressure_sensor" [ngClass]="{ 'is-invalid': f.pressure_sensor.touched && f.pressure_sensor.errors }">
+            </div>
+            <div *ngIf="f.pressure_sensor.touched && f.pressure_sensor.errors " class="invalid-feedback">
+              <div *ngIf="f.pressure_sensor.errors.required "> * Required field</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="voltage_sensor" [ngClass]="{'is-invalid':f.voltage_sensor.touched && f.voltage_sensor.errors}">Voltage Sensor Fixed Name</label>
+              <input type="text" class="form-control" id="voltage_sensor" formControlName="voltage_sensor" [ngClass]="{ 'is-invalid': f.voltage_sensor.touched && f.voltage_sensor.errors }">
+            </div>
+            <div *ngIf="f.voltage_sensor.touched && f.voltage_sensor.errors " class="invalid-feedback">
+              <div *ngIf="f.voltage_sensor.errors.required "> * Required field</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="humidity_sensor" [ngClass]="{'is-invalid':f.humidity_sensor.touched && f.humidity_sensor.errors}">Humidity Sensor Fixed Name</label>
+              <input type="text" class="form-control" id="humidity_sensor" formControlName="humidity_sensor" [ngClass]="{ 'is-invalid': f.humidity_sensor.touched && f.humidity_sensor.errors }">
+            </div>
+            <div *ngIf="f.humidity_sensor.touched && f.humidity_sensor.errors " class="invalid-feedback">
+              <div *ngIf="f.humidity_sensor.errors.required "> * Required field</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="lum_sensor" [ngClass]="{'is-invalid':f.lum_sensor.touched && f.lum_sensor.errors}">Luminosity Sensor Fixed Name</label>
+              <input type="text" class="form-control" id="lum_sensor" formControlName="lum_sensor" [ngClass]="{ 'is-invalid': f.lum_sensor.touched && f.lum_sensor.errors }">
+            </div>
+            <div *ngIf="f.lum_sensor.touched && f.lum_sensor.errors " class="invalid-feedback">
+              <div *ngIf="f.lum_sensor.errors.required "> * Required field</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="amps_sensor" [ngClass]="{'is-invalid':f.amps_sensor.touched && f.amps_sensor.errors}">Current Sensor Fixed Name</label>
+              <input type="text" class="form-control" id="amps_sensor" formControlName="amps_sensor" [ngClass]="{ 'is-invalid': f.amps_sensor.touched && f.amps_sensor.errors }">
+            </div>
+            <div *ngIf="f.amps_sensor.touched && f.amps_sensor.errors " class="invalid-feedback">
+              <div *ngIf="f.amps_sensor.errors.required "> * Required field</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="energy_sensor" [ngClass]="{'is-invalid':f.energy_sensor.touched && f.energy_sensor.errors}">Energy Sensor Fixed Name</label>
+              <input type="text" class="form-control" id="energy_sensor" formControlName="energy_sensor" [ngClass]="{ 'is-invalid': f.energy_sensor.touched && f.energy_sensor.errors }">
+            </div>
+            <div *ngIf="f.energy_sensor.touched && f.energy_sensor.errors " class="invalid-feedback">
+              <div *ngIf="f.energy_sensor.errors.required "> * Required field</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="system_state_path" [ngClass]="{'is-invalid':f.system_state_path.touched && f.system_state_path.errors}">System State Path</label>
+              <input type="text" class="form-control" id="system_state_path" formControlName="system_state_path" [ngClass]="{ 'is-invalid': f.system_state_path.touched && f.system_state_path.errors }">
+            </div>
+            <div *ngIf="f.system_state_path.touched && f.system_state_path.errors " class="invalid-feedback">
+              <div *ngIf="f.system_state_path.errors.required "> * Required field</div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </app-card>
+  </div>
+  <div class="col-md-12">
+    <div class="text-right">
+      <button class="btn btn-square btn-primary btn-new-item" (click)="saveConfgisMqtt()">Save</button>
+    </div>
+  </div>
+</div>

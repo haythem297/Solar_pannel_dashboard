@@ -1,0 +1,91 @@
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+@mixin button-variant($background, $border, $hover-background: darken($background, 7.5%), $hover-border: darken($border, 10%), $active-background: darken($background, 10%), $active-border: darken($border, 12.5%)) {
+    color: color-yiq($background);
+    background-color: $border;
+    border-color: $border;
+
+    &:hover {
+        color: color-yiq($hover-background);
+        background-color: $hover-background;
+        border-color: $hover-border;
+    }
+
+    &.focus,
+    &:focus {}
+
+    &.disabled,
+    &:disabled {
+        color: color-yiq($background);
+        background-color: $background;
+        border-color: $border;
+    }
+
+    &:not(:disabled):not(.disabled).active,
+    &:not(:disabled):not(.disabled):active,
+    .show > &.dropdown-toggle {
+        color: color-yiq($active-background);
+        background-color: $active-background;
+        border-color: $active-border;
+
+        &:focus {}
+    }
+}
+@mixin button-outline-variant($color, $color-hover: color-yiq($color), $active-background: $color, $active-border: $color) {
+    color: $color;
+    background-color: transparent;
+    background-image: none;
+    border-color: $color;
+
+    &:hover {
+        color: color-yiq($color);
+        background-color: $active-background;
+        border-color: $active-border;
+    }
+
+    &.focus,
+    &:focus {}
+
+    &.disabled,
+    &:disabled {
+        color: $color;
+        background-color: transparent;
+    }
+
+    &:not(:disabled):not(.disabled).active,
+    &:not(:disabled):not(.disabled):active,
+    .show > &.dropdown-toggle {
+        color: color-yiq($active-background);
+        background-color: $active-background;
+        border-color: $active-border;
+
+        &:focus {}
+    }
+}
+@mixin button-glow-variant($color, $color-hover: color-yiq($color), $active-background: $color, $active-border: $color) {
+    // box-shadow: 0 1px 20px 1px transparentize($color,0.4);
+    // box-shadow: 0 16px 26px -10px transparentize($color,0.44),0 8px 10px -5px transparentize($color,0.8);
+    box-shadow: 0 1px 6px 2px transparentize($color,0.44), 0 6px 11px 2px transparentize($color,0.8);
+    &:hover{
+        box-shadow: 0 1px 4px 2px transparentize($color,0.44), 0 4px 9px 2px transparentize($color,0.9);
+    }
+    &:not(:disabled):not(.disabled).active,
+    &:not(:disabled):not(.disabled):active:focus,
+    .show > &.dropdown-toggle,
+    &.active,
+    &:focus{
+        box-shadow: none
+    }
+}
+.btn-close {
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: 0.25em 0.25em;
+    color: #FFF;
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+    border: 0; // for button elements
+    opacity: 0.5;
+  }
